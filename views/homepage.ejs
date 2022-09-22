@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Horizontal Card Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+    .bcontent {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <input id='newpage' type="hidden" value="<%=isEndPage%>">
+  <% console.log("from :::" +nodes.length)
+  for(var _index=0; _index < nodes.length; _index++) { var _node=nodes[_index]; %>
+    <div class="card" style="width: 500px; margin: 10px;" id="element">
+      <div class="row no-gutters">
+        <div class="col-sm-5">
+          <img class="card-img" src="<%=_node.node.field_photo_image_section%>" alt="<%=_node.node.author_name%>">
+        </div>
+        <div class="col-sm-7">
+          <div class="card-body">
+            <h5 class="card-title"><%=_index%></h5> 
+            </h2>
+            <p class="card-text">
+              <%=_node.node.title%>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+</body>
+<script>
+  var isCallOnce = false;
+  function refreshPage() {
+    if(!isCallOnce) location.reload(true);
+    isCallOnce = true;
+  }
+  window.onscroll = function(ev) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      alert("next page calling...")
+      refreshPage();  
+    }
+  };
+</script>
+</html>
